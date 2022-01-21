@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -21,6 +22,11 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu id="AEO-aA-1fp">
             <items>
+                <menuItem title="Bluesnooze" id="XbU-e4-0BP">
+                    <imageReference key="image" image="bluesnooze" symbolScale="medium" renderingMode="original"/>
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="I05-e9-tpK"/>
                 <menuItem title="Launch at login" id="I9E-pI-lLm" userLabel="Launch At Login Menu Item">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
@@ -43,4 +49,7 @@
             <point key="canvasLocation" x="-64.5" y="68"/>
         </menu>
     </objects>
+    <resources>
+        <image name="bluesnooze" width="18" height="18"/>
+    </resources>
 </document>

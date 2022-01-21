@@ -55,10 +55,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @objc func onPowerDown(note: NSNotification) {
         setBluetooth(powerOn: false)
+        let _ = "networksetup -setairportpower Wi-Fi off".runAsCommand()
     }
 
     @objc func onPowerUp(note: NSNotification) {
         setBluetooth(powerOn: true)
+        let _ = "networksetup -setairportpower Wi-Fi on".runAsCommand()
     }
 
     private func setBluetooth(powerOn: Bool) {
@@ -84,5 +86,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private func setLaunchAtLoginState() {
         let state = LaunchAtLogin.isEnabled ? NSControl.StateValue.on : NSControl.StateValue.off
         launchAtLoginMenuItem.state = state
+    }
+}
+
+extension String {
+    func runAsCommand() -> String {
+        let pipe = Pipe()
+        let task = Process()
+        task.launchPath = "/bin/sh"
+        task.arguments = ["-c", String(format:"%@", self)]
+        task.standardOutput = pipe
+        let file = pipe.fileHandleForReading
+        task.launch()
+        if let result = NSString(data: file.readDataToEndOfFile(), encoding: String.Encoding.utf8.rawValue) {
+            return result as String
+        }
+        else {
+            return "--- Error running command - Unable to initialize string from file data ---"
+        }
     }
 }
